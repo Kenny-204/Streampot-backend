@@ -4,6 +4,8 @@ import { errorHandler } from "./utils/middlewares/errorHandler";
 import authRoutes from "./modules/auth/routes";
 import watchListRoutes from "./modules/watch-list/routes";
 const cors = require('cors')
+
+
 dotenv.config();
 
 export class Server {
@@ -28,6 +30,7 @@ export class Server {
         credentials: true,
       })
     );
+
     this.enableMiddlewares();
     this.app.use("/auth", authRoutes);
     this.app.use("/watchlist", watchListRoutes);
