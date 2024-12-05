@@ -2,9 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { errorHandler } from "./utils/middlewares/errorHandler";
 import authRoutes from "./modules/auth/routes";
-import { METHODS, request } from "http";
-const cors = require("cors");
-
+import watchListRoutes from "./modules/watch-list/routes";
+const cors = require('cors')
 dotenv.config();
 
 export class Server {
@@ -19,6 +18,9 @@ export class Server {
   private enableMiddlewares() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+  }
+
+  public startApp() {
     this.app.use(
       cors({
         origin: "http://localhost:5173",
@@ -26,11 +28,9 @@ export class Server {
         credentials: true,
       })
     );
-  }
-
-  public startApp() {
     this.enableMiddlewares();
     this.app.use("/auth", authRoutes);
+    this.app.use("/watchlist", watchListRoutes);
     this.app.use(errorHandler);
 
     this.app.listen(this.port, () => {
