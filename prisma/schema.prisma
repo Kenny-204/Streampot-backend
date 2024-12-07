@@ -35,17 +35,6 @@ model WatchList {
 }
 
 model Movie {
-  id        Int        @id @default(autoincrement())
-  api_id    Int
-  title       String
-  overview    String?
-  posterPath  String?
-  releaseDate DateTime?
-  voteAverage Float?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  watchListId Int
-  WatchList WatchList? @relation(fields: [watchListId], references: [id])
-
-  watchListId Int?
+    id          Int       @id @default(autoincrement())
+  api_id      Int
 }
