@@ -35,6 +35,8 @@ model WatchList {
 }
 
 model Movie {
-    id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   api_id      Int
+  WatchList   WatchList? @relation(fields: [watchListId], references: [id])
+  watchListId Int?
 }
